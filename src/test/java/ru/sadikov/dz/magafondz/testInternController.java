@@ -1,0 +1,18 @@
+package ru.sadikov.dz.magafondz;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ru.sadikov.dz.magafondz.controllers.InternController;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class testInternController {
+    @Autowired
+    private InternController controller;
+
+    @Test
+    public void contextLoads() throws Exception {
+        assertThat(controller).isNotNull();
+    }
+}

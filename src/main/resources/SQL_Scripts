@@ -1,0 +1,23 @@
+create table interns(
+    name varchar(100) not null ,
+    surname varchar not null ,
+    age int check ( age>0 ) not null ,
+    hobby varchar
+);
+
+
+create table employees(
+    name varchar(100) not null ,
+    surname varchar not null ,
+    job_title varchar not null
+);
+
+
+insert into employee (name, surname, job_title) VALUES ('kiril','gerenov','ceo');
+insert into employee (name, surname, job_title) VALUES ('Vlad','Babanokov','Security');
+insert into employee (name, surname, job_title) VALUES ('Tom','Odinstov','HR');
+
+
+insert into interns(name, surname, age, hobby) VALUES ('Garik','Sadikov',20,'gym');
+insert into interns(name, surname, age, hobby) VALUES ('Masha','Nurridinova',40,'playing tennis');
+insert into interns(name, surname, age, hobby) VALUES ('Bob','Jonson',10,'footbal');

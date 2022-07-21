@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Employee</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<h2>List of interns</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Age</th>
+    <th>Hobby</th>
+  </tr>
+
+  <tr th:each="inter : ${inter}">
+    <td th:text="${inter.name}">name</td>
+    <td th:text="${inter.surname}">Surname</td>
+    <td th:text="${inter.age}">age</td>
+    <td th:text="${inter.hobby}">hobby</td>
+  </tr>
+</table>
+
+</body>
+</html>
