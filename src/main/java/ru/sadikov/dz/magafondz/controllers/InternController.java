@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.sadikov.dz.magafondz.EmployeeService.IEmployeeService;
-import ru.sadikov.dz.magafondz.EmployeeService.IInterService;
-import ru.sadikov.dz.magafondz.models.Employee;
+import ru.sadikov.dz.magafondz.Reprository.IInterReprository;
 import ru.sadikov.dz.magafondz.models.Intern;
 
 import java.util.List;
@@ -15,7 +13,7 @@ import java.util.List;
 @Controller
 public class InternController {
     @Autowired
-    IInterService iInterService;
+    IInterReprository iInterService;
 
     @GetMapping("/interlist")
     public String findCities(Model model) {

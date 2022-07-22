@@ -13,9 +13,9 @@ create table employees(
 );
 
 
-insert into employee (name, surname, job_title) VALUES ('kiril','gerenov','ceo');
-insert into employee (name, surname, job_title) VALUES ('Vlad','Babanokov','Security');
-insert into employee (name, surname, job_title) VALUES ('Tom','Odinstov','HR');
+insert into employees (name, surname, job_title) VALUES ('kiril','gerenov','ceo');
+insert into employees (name, surname, job_title) VALUES ('Vlad','Babanokov','Security');
+insert into employees (name, surname, job_title) VALUES ('Tom','Odinstov','HR');
 
 
 insert into interns(name, surname, age, hobby) VALUES ('Garik','Sadikov',20,'gym');

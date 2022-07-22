@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.sadikov.dz.magafondz.EmployeeService.IEmployeeService;
+import ru.sadikov.dz.magafondz.Reprository.IEmployeeReprository;
 import ru.sadikov.dz.magafondz.models.Employee;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class EmployeesController {
     @Autowired
-    IEmployeeService employeeService;
+    IEmployeeReprository employeeService;
 
     @GetMapping("/employeelist")
     public String findCities(Model model) {
