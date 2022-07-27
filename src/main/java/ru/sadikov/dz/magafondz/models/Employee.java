@@ -1,15 +1,12 @@
 package ru.sadikov.dz.magafondz.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee implements Serializable {
     @Id
-
     @Column(name = "name")
     private  String name;
 

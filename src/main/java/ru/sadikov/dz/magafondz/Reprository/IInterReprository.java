@@ -7,6 +7,7 @@ import ru.sadikov.dz.magafondz.models.Intern;
 
 import java.util.List;
 
-public interface IInterReprository extends JpaRepository<Intern,Long> {
-    List<Intern> findAll();
+public interface IInterReprository extends JpaRepository<Intern,String> {
+
+
 }
