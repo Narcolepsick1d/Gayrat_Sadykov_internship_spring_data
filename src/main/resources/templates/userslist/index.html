@@ -21,11 +21,11 @@
 			<thead>
 				<tr>
 					<th>
-						<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
-							User First Name</a>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+							User Name</a>
 					</th>
 					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=surname&sortDir=' + ${reverseSortDir}}">
 						User Last Name</a>
 					</th>
 					<th>
@@ -45,7 +45,7 @@
 							User role</a>
 					</th>
 					<th>
-						<a th:href="@{'/page/' + ${currentPage} + '?sortField=role&sortDir=' + ${reverseSortDir}}">
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=active&sortDir=' + ${reverseSortDir}}">
 							User Active</a>
 					</th>
 					<th> Actions </th>
