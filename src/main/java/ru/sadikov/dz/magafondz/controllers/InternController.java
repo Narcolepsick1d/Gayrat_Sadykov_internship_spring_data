@@ -40,10 +40,10 @@ public class InternController {
     }
 
     @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable( value = "id") String name, Model model) {
+    public String showFormForUpdate(@PathVariable( value = "id") Integer id, Model model) {
 
 
-        Intern intern = interService.getInternByName(name);
+        Intern intern = interService.getInternById(id);
 
 
         model.addAttribute("intern", intern);
@@ -51,10 +51,10 @@ public class InternController {
     }
 
     @GetMapping("/deleteIntern/{id}")
-    public String deleteIntern(@PathVariable (value = "id") String name) {
+    public String deleteIntern(@PathVariable (value = "id") Integer id) {
 
 
-        this.interService.deleteInternByName(name);
+        this.interService.deleteInternById(id);
         return "redirect:/internlist";
     }
 

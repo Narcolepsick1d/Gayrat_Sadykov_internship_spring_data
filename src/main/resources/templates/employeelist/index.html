@@ -40,8 +40,8 @@
 			<td th:text="${employee.name}"></td>
 			<td th:text="${employee.surname}"></td>
 			<td th:text="${employee.jobTitle}"></td>
-			<td> <a th:href="@{/employeelist/showFormForUpdate/{id}(id=${employee.name})}" class="btn btn-primary">Update</a>
-				<a th:href="@{/employeelist/deleteEmployee/{id}(id=${employee.name})}" class="btn btn-danger">Delete</a>
+			<td> <a th:href="@{/employeelist/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
+				<a th:href="@{/employeelist/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
 			</td>
 		</tr>
 		</tbody>

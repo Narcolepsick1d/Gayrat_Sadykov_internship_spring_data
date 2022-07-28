@@ -35,18 +35,18 @@ public class UsersController {
         return "redirect:/userslist";
     }
     @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable ( value = "id") String email, Model model) {
+    public String showFormForUpdate(@PathVariable ( value = "id") Integer id, Model model) {
 
 
-        Users users = usersService.getUsersByEmail(email);
+        Users users = usersService.getUsersById(id);
 
 
         model.addAttribute("users", users);
         return "userslist/update_user";
     }
     @GetMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable (value = "id") String email){
-        this.usersService.deleteUsersByEmail(email);
+    public String deleteUser(@PathVariable (value = "id") Integer id){
+        this.usersService.deleteUsersById(id);
         return "redirect:/userslist";
     }
 

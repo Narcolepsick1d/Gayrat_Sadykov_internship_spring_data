@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import ru.sadikov.dz.magafondz.Reprository.IInterReprository;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-
+@PreAuthorize("hasRole('ROLE_MENTOR')")
 public class InterServicesImpl implements InterService {
     @Autowired
     private IInterReprository iInterReprository;
@@ -34,19 +35,19 @@ public class InterServicesImpl implements InterService {
     }
 
     @Override
-    public Intern getInternByName(String name) {
-        Optional<Intern> optional = iInterReprository.findById(name);
+    public Intern getInternById(Integer id) {
+        Optional<Intern> optional = iInterReprository.findById(id);
         Intern intern = null;
         if (optional.isPresent()) {
             intern = optional.get();
         } else {
-            throw new RuntimeException(" intern not found for name :: " + name);
+            throw new RuntimeException(" intern not found for id :: " + id);
         }
         return intern;
     }
 
     @Override
-    public void deleteInternByName(String name) {this.iInterReprository.deleteById(name);
+    public void deleteInternById(Integer id) {this.iInterReprository.deleteById(id);
 
     }
 

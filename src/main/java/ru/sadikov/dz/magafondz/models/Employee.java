@@ -1,12 +1,15 @@
 package ru.sadikov.dz.magafondz.models;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "employees")
 public class Employee implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "name")
     private  String name;
 
@@ -15,6 +18,14 @@ public class Employee implements Serializable {
 
     @Column(name = "job_title")
     private String jobTitle;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Employee() {
     }

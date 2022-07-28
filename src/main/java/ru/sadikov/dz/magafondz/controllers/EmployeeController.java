@@ -40,10 +40,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable ( value = "id") String name, Model model) {
+    public String showFormForUpdate(@PathVariable ( value = "id") Integer id, Model model) {
 
         // get employee from the service
-        Employee employee = employeeService.getEmployeeByName(name);
+        Employee employee = employeeService.getEmployeeById(id);
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("employee", employee);
@@ -51,10 +51,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(@PathVariable (value = "id") String name) {
+    public String deleteEmployee(@PathVariable (value = "id") Integer id) {
 
         // call delete employee method
-        this.employeeService.deleteEmployeeByName(name);
+        this.employeeService.deleteEmployeeById(id);
         return "redirect:/employeelist";
     }
 

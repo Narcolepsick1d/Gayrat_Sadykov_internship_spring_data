@@ -4,12 +4,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
 @Table(name="USERS")
 public class Users {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @NotEmpty(message = "Роль не должно быть пустым")
     @Size(min = 2, max = 100, message = "Роль должно быть от 2 до 100 символов длиной")
     @Column(name = "email")
@@ -30,19 +33,28 @@ public class Users {
     private boolean isActive;
     @Column(name = "password")
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "role_id",referencedColumnName = "id")
-    private Role ownerRole ;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role",
+    joinColumns={@JoinColumn(name = "USER_ID",referencedColumnName = "ID")},
+    inverseJoinColumns={@JoinColumn(name = "ROLE_ID",referencedColumnName = "ID")})
+    private List<Role> ownerRole ;
 
-
-
-    public Role getOwnerRole() {
+    public List<Role> getOwnerRole() {
         return ownerRole;
     }
 
-    public void setOwnerRole(Role ownerRole) {
+    public void setOwnerRole(List<Role> ownerRole) {
         this.ownerRole = ownerRole;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
 
     public Users() {
     }

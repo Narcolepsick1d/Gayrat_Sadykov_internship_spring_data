@@ -8,7 +8,7 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> getAllEmployees();
     void saveEmployee(Employee employee);
-    Employee getEmployeeByName(String name);
-    void deleteEmployeeByName(String name);
+    Employee getEmployeeById(Integer id);
+    void deleteEmployeeById(Integer id);
     Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

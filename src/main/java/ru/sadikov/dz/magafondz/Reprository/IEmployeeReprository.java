@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface IEmployeeReprository extends JpaRepository<Employee,String > {
+public interface IEmployeeReprository extends JpaRepository<Employee,Integer > {
 
 
 }

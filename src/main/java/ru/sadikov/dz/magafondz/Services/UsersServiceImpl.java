@@ -5,14 +5,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import ru.sadikov.dz.magafondz.Reprository.IUsersRepository;
+import ru.sadikov.dz.magafondz.models.Role;
 import ru.sadikov.dz.magafondz.models.Users;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class UsersServiceImpl implements UsersService {
     @Autowired
     private IUsersRepository iUsersRepository;
@@ -26,24 +29,25 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public void saveUsers(Users users) {
     this.iUsersRepository.save(users);
+
     }
 
     @Override
-    public Users getUsersByEmail(String email) {
-        Optional<Users> optional = iUsersRepository.findByEmail(email);
+    public Users getUsersById(Integer id) {
+        Optional<Users> optional = iUsersRepository.findById(id);
         Users users1 = null;
         if(optional.isPresent()){
             users1 = optional.get();
         }
         else {
-            throw new RuntimeException("User not found for Email :: "+email);
+            throw new RuntimeException("User not found for Id :: "+id);
         }
         return users1;
     }
 
     @Override
-    public void deleteUsersByEmail(String email) {
-        this.iUsersRepository.deleteByEmail(email);
+    public void deleteUsersById(Integer id) {
+        this.iUsersRepository.deleteById(id);
 
     }
 

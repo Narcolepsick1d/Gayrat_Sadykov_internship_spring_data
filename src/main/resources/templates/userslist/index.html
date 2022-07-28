@@ -60,8 +60,8 @@
 					<td th:text="${user.password}"></td>
 					<td th:text="${user.ownerRole.name}"></td>
 					<td th:text="${user.active}"></td>
-					<td> <a th:href="@{/userslist/showFormForUpdate/{id}(id=${user.email})}" class="btn btn-primary">Update</a>
-					    <a th:href="@{/userslist/deleteUser/{id}(id=${user.email})}" class="btn btn-danger">Delete</a>
+					<td> <a th:href="@{/userslist/showFormForUpdate/{id}(id=${user.id})}" class="btn btn-primary">Update</a>
+					    <a th:href="@{/userslist/deleteUser/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			</tbody>

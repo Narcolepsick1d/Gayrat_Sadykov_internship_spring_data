@@ -1,15 +1,15 @@
 package ru.sadikov.dz.magafondz.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "interns")
 public class Intern implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
 
     @Column(name = "name")
     private String name;
@@ -22,6 +22,14 @@ public class Intern implements Serializable {
 
     @Column(name = "hobby")
     private String hobby;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {

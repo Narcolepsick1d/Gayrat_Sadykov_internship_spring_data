@@ -11,7 +11,7 @@ import java.util.List;
 public interface UsersService {
     List<Users> getAllUsers();
     void saveUsers(Users users);
-    Users getUsersByEmail(String email);
-    void deleteUsersByEmail(String email);
+    Users getUsersById(Integer id);
+    void deleteUsersById(Integer id);
     Page<Users> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

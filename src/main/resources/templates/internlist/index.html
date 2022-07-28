@@ -45,8 +45,8 @@
 					<td th:text="${intern.surname}"></td>
 					<td th:text="${intern.age}"></td>
 					<td th:text="${intern.hobby}"></td>
-					<td> <a th:href="@{/internlist/showFormForUpdate/{id}(id=${intern.name})}" class="btn btn-primary">Update</a>
-					    <a th:href="@{/internlist/deleteIntern/{id}(id=${intern.name})}" class="btn btn-danger">Delete</a>
+					<td> <a th:href="@{/internlist/showFormForUpdate/{id}(id=${intern.id})}" class="btn btn-primary">Update</a>
+					    <a th:href="@{/internlist/deleteIntern/{id}(id=${intern.id})}" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			</tbody>
