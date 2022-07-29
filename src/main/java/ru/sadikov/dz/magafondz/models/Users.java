@@ -44,7 +44,10 @@ public class Users {
     public Set<Role> getOwnerRole() {
         return ownerRole;
     }
+    public void addRole(Role role){
+        this.ownerRole.add(role);
 
+    }
     public void setOwnerRole(Set<Role> ownerRole) {
         this.ownerRole = ownerRole;
     }
