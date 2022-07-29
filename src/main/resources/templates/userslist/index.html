@@ -52,20 +52,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="user : ${listUsers}">
+				<tr th:each="user : ${listUsers} ">
 					<td th:text="${user.name}"></td>
 					<td th:text="${user.surname}"></td>
 					<td th:text="${user.age}"></td>
 					<td th:text="${user.email}"></td>
 					<td th:text="${user.password}"></td>
-					<td th:text="${user.ownerRole.name}"></td>
+					<td th:text="${user.ownerRole}"></td>
 					<td th:text="${user.active}"></td>
 					<td> <a th:href="@{/userslist/showFormForUpdate/{id}(id=${user.id})}" class="btn btn-primary">Update</a>
 					    <a th:href="@{/userslist/deleteUser/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
+
 			</tbody>
+
 		</table>
+
 		
 		<div th:if = "${totalPages > 1}">
 			<div class = "row col-sm-10">

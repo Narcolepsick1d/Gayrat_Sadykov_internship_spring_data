@@ -1,24 +1,21 @@
 package ru.sadikov.dz.magafondz.Services;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
-
 import ru.sadikov.dz.magafondz.Reprository.IInterReprository;
-
-
 import ru.sadikov.dz.magafondz.models.Intern;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@PreAuthorize("hasRole('ROLE_MENTOR')")
+
 public class InterServicesImpl implements InterService {
     @Autowired
     private IInterReprository iInterReprository;

@@ -4,7 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -33,17 +35,17 @@ public class Users {
     private boolean isActive;
     @Column(name = "password")
     private String password;
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
-    joinColumns={@JoinColumn(name = "USER_ID",referencedColumnName = "ID")},
-    inverseJoinColumns={@JoinColumn(name = "ROLE_ID",referencedColumnName = "ID")})
-    private List<Role> ownerRole ;
+    joinColumns=@JoinColumn(name = "user_id"),
+    inverseJoinColumns=@JoinColumn(name = "role_id"))
+    private Set<Role> ownerRole = new HashSet<>() ;
 
-    public List<Role> getOwnerRole() {
+    public Set<Role> getOwnerRole() {
         return ownerRole;
     }
 
-    public void setOwnerRole(List<Role> ownerRole) {
+    public void setOwnerRole(Set<Role> ownerRole) {
         this.ownerRole = ownerRole;
     }
 

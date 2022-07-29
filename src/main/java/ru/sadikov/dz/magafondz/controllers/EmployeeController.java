@@ -2,6 +2,7 @@ package ru.sadikov.dz.magafondz.controllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -10,74 +11,75 @@ import org.springframework.web.bind.annotation.*;
 import ru.sadikov.dz.magafondz.Services.EmployeeService;
 import ru.sadikov.dz.magafondz.models.Employee;
 
+
 @CrossOrigin(origins = "http://localhost:8080")
 @Controller
 @RequestMapping("/employeelist")
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
+	@Autowired
+	private EmployeeService employeeService;
 
-    // display list of employees
-    @GetMapping("")
-    public String viewHomePage(Model model) {
-        return findPaginated(1, "name", "asc", model);
-    }
+	// display list of employees
+	@GetMapping("")
+	public String viewHomePage(Model model) {
+		return findPaginated(1, "name", "asc", model);
+	}
 
-    @GetMapping("/showNewEmployeeForm")
-    public String showNewEmployeeForm(Model model) {
-        // create model attribute to bind form data
-        Employee employee = new Employee();
-        model.addAttribute("employee", employee);
-        return "employeelist/new_employee";
-    }
+	@GetMapping("/showNewEmployeeForm")
+	public String showNewEmployeeForm(Model model) {
+		// create model attribute to bind form data
+		Employee employee = new Employee();
+		model.addAttribute("employee", employee);
+		return "employeelist/new_employee";
+	}
 
-    @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-        // save employee to database
-        employeeService.saveEmployee(employee);
-        return "redirect:/employeelist";
-    }
+	@PostMapping("/saveEmployee")
+	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+		// save employee to database
+		employeeService.saveEmployee(employee);
+		return "redirect:/employeelist";
+	}
 
-    @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable ( value = "id") Integer id, Model model) {
+	@GetMapping("/showFormForUpdate/{id}")
+	public String showFormForUpdate(@PathVariable ( value = "id") Integer id, Model model) {
 
-        // get employee from the service
-        Employee employee = employeeService.getEmployeeById(id);
+		// get employee from the service
+		Employee employee = employeeService.getEmployeeById(id);
 
-        // set employee as a model attribute to pre-populate the form
-        model.addAttribute("employee", employee);
-        return "employeelist/update_employee";
-    }
+		// set employee as a model attribute to pre-populate the form
+		model.addAttribute("employee", employee);
+		return "employeelist/update_employee";
+	}
 
-    @GetMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(@PathVariable (value = "id") Integer id) {
+	@GetMapping("/deleteEmployee/{id}")
+	public String deleteEmployee(@PathVariable (value = "id") Integer id) {
 
-        // call delete employee method
-        this.employeeService.deleteEmployeeById(id);
-        return "redirect:/employeelist";
-    }
+		// call delete employee method 
+		this.employeeService.deleteEmployeeById(id);
+		return "redirect:/employeelist";
+	}
 
 
-    @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
-                                @RequestParam("sortField") String sortField,
-                                @RequestParam("sortDir") String sortDir,
-                                Model model) {
-        int pageSize = 5;
+	@GetMapping("/page/{pageNo}")
+	public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
+								@RequestParam("sortField") String sortField,
+								@RequestParam("sortDir") String sortDir,
+								Model model) {
+		int pageSize = 5;
 
-        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Employee> listEmployees = page.getContent();
+		Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
+		List<Employee> listEmployees = page.getContent();
 
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("totalItems", page.getTotalElements());
 
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("sortField", sortField);
+		model.addAttribute("sortDir", sortDir);
+		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
-        model.addAttribute("listEmployees", listEmployees);
-        return "employeelist/index";
-    }
+		model.addAttribute("listEmployees", listEmployees);
+		return "employeelist/index";
+	}
 }

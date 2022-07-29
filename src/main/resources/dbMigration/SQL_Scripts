@@ -60,4 +60,8 @@ INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES
 INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES ('manager2','managerov2',39,'manager2@gmail.com','12345',2,true);
 
 INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES ('admin','adminov',27,'admin@gmail.com','12345',3,true);
-
+Insert into user_role(user_id, role_id) VALUES (1,1);
+Insert into user_role(user_id, role_id) VALUES (2,1);
+Insert into user_role(user_id, role_id) VALUES (3,2);
+Insert into user_role(user_id, role_id) VALUES (4,2);
+Insert into user_role(user_id, role_id) VALUES (5,3);

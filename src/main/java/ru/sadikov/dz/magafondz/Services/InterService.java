@@ -1,11 +1,12 @@
 package ru.sadikov.dz.magafondz.Services;
 
-import org.springframework.data.domain.Page;
 
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 import ru.sadikov.dz.magafondz.models.Intern;
 
 import java.util.List;
-
+@Service
 public interface InterService  {
     List<Intern> getAllInterns();
     void saveIntern(Intern intern);

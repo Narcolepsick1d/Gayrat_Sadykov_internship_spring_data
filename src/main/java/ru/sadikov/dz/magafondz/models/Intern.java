@@ -1,11 +1,11 @@
 package ru.sadikov.dz.magafondz.models;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 @Entity
 @Table(name = "interns")
-public class Intern implements Serializable {
+public class Intern  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

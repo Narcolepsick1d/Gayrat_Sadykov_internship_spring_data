@@ -1,16 +1,16 @@
 package ru.sadikov.dz.magafondz.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
 import ru.sadikov.dz.magafondz.Services.InterService;
 import ru.sadikov.dz.magafondz.models.Intern;
 
 import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:8080")
 @Controller
 @RequestMapping("/internlist")
