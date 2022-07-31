@@ -45,23 +45,19 @@ create table USERS(
 
 );
 CREATE TABLE user_role(
-    user_id int references users(id),
-    role_id int references roles(id),
-    primary key (user_id,role_id)
+                         user_id int  ,
+                          role_id int ,
+                    constraint fk_users foreign key (user_id) references users(id) on delete set null ,
+                    constraint fk_role foreign key (role_id) references roles(id)on delete set null
 );
-
 
 INSERT into ROLES(role, name) VALUES('ROLE_MENTOR','Ментор');
 INSERT into ROLES(role, name) VALUES('ROLE_MANAGER','Менеджер');
 INSERT into ROLES(role, name) VALUES('ROLE_ADMIN','Админ');
-INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES ('mentor','mentorov',27,'mentor@gmail.com','12345',1,true);
-INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES ('mentor1','mentorov1',40,'mentor1@gmail.com','12345',1,true);
-INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES ('manager','managerov',35,'manager@gmail.com','12345',2,true);
-INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES ('manager2','managerov2',39,'manager2@gmail.com','12345',2,true);
 
-INSERT into USERS (name, surname, age, email,password,role_id,  isactive) VALUES ('admin','adminov',27,'admin@gmail.com','12345',3,true);
 Insert into user_role(user_id, role_id) VALUES (1,1);
 Insert into user_role(user_id, role_id) VALUES (2,1);
 Insert into user_role(user_id, role_id) VALUES (3,2);
 Insert into user_role(user_id, role_id) VALUES (4,2);
 Insert into user_role(user_id, role_id) VALUES (5,3);
+ ТЕПЕРЬ ТУТ САМОЕ ГЛАВНОЕ НУЖНО В БД ЗАНЕСТИ НОРМАЛЬНЫЕ ПАРОЛИ

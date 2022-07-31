@@ -42,14 +42,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/users/**").authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/").hasAnyAuthority("USER","ADMIN","MANAGER","MENTOR")
+                .antMatchers("/userslist/users","/userslist/users/new","/userslist/users/edit/**").hasRole("ADMIN")
+                .antMatchers("/employeelist","/employeelist/showNewEmployeeForm","//employeelist/showNewEmployeeForm/**").hasRole("MANAGER")
+                .antMatchers("/internlist","/internlist/showNewInternForm","/internlist/showNewInternForm/**").hasRole("MENTOR")
+                .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .usernameParameter("email")
-                .defaultSuccessUrl("/users")
-                .permitAll()
+                .formLogin().permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/").permitAll();
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
+//        http.authorizeRequests()
+//                .antMatchers("/users/**").authenticated()
+//                .anyRequest().permitAll()
+//                .and()
+//                .formLogin()
+//                .usernameParameter("email")
+//                .defaultSuccessUrl("/users")
+//                .permitAll()
+//                .and()
+//                .logout().logoutSuccessUrl("/").permitAll();
     }
 }
