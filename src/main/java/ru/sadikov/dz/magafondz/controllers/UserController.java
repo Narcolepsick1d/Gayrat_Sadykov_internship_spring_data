@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.sadikov.dz.magafondz.Reprository.IUsersRepository;
 import ru.sadikov.dz.magafondz.Reprository.RoleRepository;
+import ru.sadikov.dz.magafondz.Services.UserService;
 import ru.sadikov.dz.magafondz.models.Role;
 import ru.sadikov.dz.magafondz.models.Users;
 
@@ -20,6 +21,8 @@ public class UserController {
     private IUsersRepository iUsersRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private UserService service;
 
     @GetMapping("/users")
     public String showUserList(Model model){
@@ -36,13 +39,13 @@ public class UserController {
 }
 @PostMapping("/users/save")
     public String saveUser(Users users){
-        iUsersRepository.save(users);
+        service.save(users);
         return "redirect:/userslist/users";
 
 }
 @GetMapping("/users/edit/{id}")
     public String showEditUserForm(@PathVariable("id") Integer id,Model model){
-        Users users=iUsersRepository.findById(id).get();
+        Users users=service.get(id);
         model.addAttribute("user",users);
 
         List<Role>roleList=roleRepository.findAll();

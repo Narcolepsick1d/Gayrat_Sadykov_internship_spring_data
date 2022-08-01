@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="ISO-8859-1">
 <title>Intern Management System</title>
@@ -11,6 +11,14 @@
 	
 </head>
 <body>
+<div>
+	<form th:action="@{/logout}" method="post">
+		<p>
+			Welcome <b>[[${#request.userPrincipal.principal.fullName}]] </b>
+			<span sec:authentication="principal.authorities">roles</span>
+		</p>
+		<input type="submit" value="Sign Out" />
+	</form>
 
 	<div class="container my-2">
 	<h1>Interns List</h1>

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.sadikov.dz.magafondz.Services.CustomUserDetailsService;
 
 
@@ -21,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -48,7 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/internlist","/internlist/showNewInternForm","/internlist/showNewInternForm/**").hasRole("MENTOR")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+
+                .formLogin().permitAll().successForwardUrl("/index")
                 .and()
                 .logout().permitAll()
                 .and()
