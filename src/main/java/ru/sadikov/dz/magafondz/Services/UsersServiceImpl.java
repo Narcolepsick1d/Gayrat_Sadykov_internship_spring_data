@@ -1,6 +1,7 @@
 package ru.sadikov.dz.magafondz.Services;
 
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,13 +10,15 @@ import org.springframework.data.domain.Sort;
 
 import org.springframework.stereotype.Service;
 import ru.sadikov.dz.magafondz.Reprository.IUsersRepository;
-import ru.sadikov.dz.magafondz.Services.UsersService;
+
+import ru.sadikov.dz.magafondz.models.Role;
 import ru.sadikov.dz.magafondz.models.Users;
 
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 
 @Service
 
@@ -24,10 +27,14 @@ public class UsersServiceImpl implements UsersService {
     private IUsersRepository iUsersRepository;
 
 
+
     @Override
     public List<Users> getAllUsers() {
         return iUsersRepository.findAll();
     }
+
+
+
 
     @Override
     public void saveUsers(Users users) {
@@ -42,7 +49,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Users getUsersById(Integer id) {
         Optional<Users> optional = iUsersRepository.findById(id);
-        Users users1 = null;
+        Users users1;
         if(optional.isPresent()){
             users1 = optional.get();
         }
@@ -60,6 +67,7 @@ public class UsersServiceImpl implements UsersService {
         this.iUsersRepository.deleteById(id);
 
     }
+
 
     @Override
     public Page<Users> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {

@@ -5,7 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
 
@@ -35,6 +35,8 @@ public class Users {
     private boolean isActive;
     @Column(name = "password")
     private String password;
+
+
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
     joinColumns=@JoinColumn(name = "user_id"),

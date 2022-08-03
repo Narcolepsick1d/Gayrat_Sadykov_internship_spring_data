@@ -1,6 +1,7 @@
 package ru.sadikov.dz.magafondz.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,13 @@ import ru.sadikov.dz.magafondz.Reprository.RoleRepository;
 import ru.sadikov.dz.magafondz.models.Role;
 import ru.sadikov.dz.magafondz.models.Users;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 @Service
 public class UserService {
+    private Users users;
     @Autowired
     private IUsersRepository userRepo;
     @Autowired
@@ -36,6 +41,7 @@ public class UserService {
         encodePassword(user);
         userRepo.save(user);
     }
+
 
     public List<Users> listAll() {
         return userRepo.findAll();

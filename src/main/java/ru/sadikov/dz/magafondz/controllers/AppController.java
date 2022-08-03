@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.sadikov.dz.magafondz.Services.UserService;
 import ru.sadikov.dz.magafondz.models.Users;
 
-import java.util.List;
+
 
 @CrossOrigin(origins = "http://localhost:8080")
 @Controller
