@@ -19,8 +19,7 @@ public interface IUsersRepository extends JpaRepository<Users,Integer> {
     public Users findByEmail(String email);
     @Query("SELECT u FROM Users u WHERE u.id = ?1")
     public void deleteById(Integer id);
-    @Query("SELECT u from Users u where u.ownerRole=?1 ")
-    public Set<Role> findByOwnerRole(Integer id);
+
 
 
 }

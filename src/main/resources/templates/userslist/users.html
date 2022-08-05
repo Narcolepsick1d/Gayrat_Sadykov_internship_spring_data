@@ -30,7 +30,7 @@
                 <th>surname</th>
                 <th>age</th>
                 <th>email</th>
-                <th>Roles</th>
+
 
 
 
@@ -39,14 +39,14 @@
             </tr>
             </thead>
             <tbody>
-            <th:block th:each="user :${listUsers}">
+            <th:block th:each="user :${listUsers}" >
                 <tr>
                     <td>[[${user.id}]]</td>
                     <td>[[${user.name}]]</td>
                     <td>[[${user.surname}]]</td>
                     <td>[[${user.age}]]</td>
                     <td>[[${user.email}]]</td>
-                    <td>[[${user.ownerRole}]]</td>
+
                     <td>
                         <a th:href="@{'/userslist/users/edit/'+${user.id}}">Edit</a>
                        &nbsp;&nbsp;

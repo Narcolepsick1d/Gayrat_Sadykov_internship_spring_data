@@ -4,9 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-
-import java.util.Set;
 
 
 @Entity
@@ -37,21 +34,21 @@ public class Users {
     private String password;
 
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-    joinColumns=@JoinColumn(name = "user_id"),
-    inverseJoinColumns=@JoinColumn(name = "role_id"))
-    private Set<Role> ownerRole = new HashSet<>() ;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id",referencedColumnName = "id")
+    private Role role;
 
-    public Set<Role> getOwnerRole() {
-        return ownerRole;
+    public Role getRole() {
+        return role;
     }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public void addRole(Role role){
-        this.ownerRole.add(role);
+        this.role.setRole(role.getRole());
 
-    }
-    public void setOwnerRole(Set<Role> ownerRole) {
-        this.ownerRole = ownerRole;
     }
 
     public Integer getId() {
@@ -135,7 +132,7 @@ public class Users {
                 ", age=" + age +
                 ", isActive=" + isActive +
                 ", password='" + password + '\'' +
-                ", ownerRole=" + ownerRole +
+                  role+
                 '}';
     }
 }

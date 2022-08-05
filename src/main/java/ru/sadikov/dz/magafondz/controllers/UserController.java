@@ -26,6 +26,8 @@ public class UserController {
 
     @GetMapping("/users")
     public String showUserList(Model model){
+        List<Role>roleList=roleRepository.findAll();
+        model.addAttribute("listRoles",roleList);
         List<Users> usersList = iUsersRepository.findAll();
         model.addAttribute("listUsers",usersList);
         return "userslist/users";

@@ -23,10 +23,16 @@ public class Role {
     @Size(min = 2, max = 100, message = "Имя должности должно быть от 2 до 100 символов длиной")
     @Column(name = "name")
     private String name;
+    @OneToMany(mappedBy = "role")
+    private List<Users> users;
 
+    public List<Users> getUsers() {
+        return users;
+    }
 
-
-
+    public void setUsers(List<Users> users) {
+        this.users = users;
+    }
 
     public Role() {
     }

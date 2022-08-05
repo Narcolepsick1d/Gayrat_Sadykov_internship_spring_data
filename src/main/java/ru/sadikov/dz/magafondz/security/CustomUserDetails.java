@@ -13,16 +13,16 @@ import java.util.Set;
 
 public class CustomUserDetails implements UserDetails {
     private static final long serialVersionUID = 1L;
-    private Users users;
+    private final Users users;
     public CustomUserDetails(Users users){this.users =users;}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Role> roles = users.getOwnerRole();
+        Role roles = users.getRole();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getRole()));
-        }
+
+            authorities.add(new SimpleGrantedAuthority(roles.getRole()));
+
         return authorities;
     }
 

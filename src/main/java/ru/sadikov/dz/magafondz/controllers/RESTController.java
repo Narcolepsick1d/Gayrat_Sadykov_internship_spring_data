@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.sadikov.dz.magafondz.Reprository.RoleRepository;
 import ru.sadikov.dz.magafondz.Services.EmployeeService;
 import ru.sadikov.dz.magafondz.Services.InterService;
 import ru.sadikov.dz.magafondz.Services.UsersService;
@@ -14,7 +15,7 @@ import ru.sadikov.dz.magafondz.models.Role;
 import ru.sadikov.dz.magafondz.models.Users;
 
 import java.util.List;
-import java.util.Set;
+
 
 @RestController
 @RequestMapping("/api")
@@ -24,6 +25,8 @@ public class RESTController {
     private EmployeeService employeeService;
     @Autowired
     private InterService interService;
+    @Autowired
+    private RoleRepository roleRepository;
 
 @Autowired
     public RESTController(UsersService usersService) {
@@ -33,8 +36,18 @@ public class RESTController {
     public List<Users> getUsers(){
     return usersService.getAllUsers();
     }
-//    @GetMapping("/users/admin")
-//    public Set<Role> getAdmin( ){return usersService.getUserByRoleId(3);}
+    @GetMapping("/users/admin")
+    public List<Users> getAdmin( ){
+     Role role= roleRepository.findByName("ROLE_ADMIN");
+return role.getUsers();}
+    @GetMapping("/users/mentor")
+    public List<Users> getMentor( ){
+        Role role= roleRepository.findByName("ROLE_MENTOR");
+        return role.getUsers();}
+    @GetMapping("/users/manager")
+    public List<Users> getManager( ){
+        Role role= roleRepository.findByName("ROLE_MANAGER");
+        return role.getUsers();}
 
     @GetMapping("/employees")
     public List<Employee> getEmployees(){
