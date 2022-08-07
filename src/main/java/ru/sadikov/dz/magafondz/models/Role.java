@@ -37,9 +37,9 @@ public class Role {
     public Role() {
     }
 
-    public Role(String role, String name) {
+    public Role(String role ) {
         this.role = role;
-        this.name = name;
+       ;
     }
 
     public int getId() {

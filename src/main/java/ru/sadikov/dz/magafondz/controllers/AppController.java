@@ -14,6 +14,7 @@ import ru.sadikov.dz.magafondz.models.Users;
 @CrossOrigin(origins = "http://localhost:8080")
 @Controller
 public class AppController {
+
     @Autowired
     private UserService service;
     @GetMapping("")
