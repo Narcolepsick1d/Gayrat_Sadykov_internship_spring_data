@@ -75,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             );
                         }
                 );
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 //        http.authorizeRequests()
 //                .antMatchers("/users/**").authenticated()
 //                .anyRequest().permitAll()

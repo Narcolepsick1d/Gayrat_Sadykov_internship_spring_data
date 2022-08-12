@@ -1,19 +1,18 @@
 package ru.sadikov.dz.magafondz.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.sadikov.dz.magafondz.Reprository.RoleRepository;
+import ru.sadikov.dz.magafondz.Reprository.TaskEmployeeRepository;
 import ru.sadikov.dz.magafondz.Services.EmployeeService;
 import ru.sadikov.dz.magafondz.Services.InterService;
+import ru.sadikov.dz.magafondz.Services.TaskEmployeeService;
 import ru.sadikov.dz.magafondz.Services.UsersService;
-import ru.sadikov.dz.magafondz.models.Employee;
-import ru.sadikov.dz.magafondz.models.Intern;
-import ru.sadikov.dz.magafondz.models.Role;
-import ru.sadikov.dz.magafondz.models.Users;
+import ru.sadikov.dz.magafondz.models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,11 +26,15 @@ public class RESTController {
     private InterService interService;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private TaskEmployeeRepository taskEmployeeRepository;
+    private final TaskEmployeeService taskEmployeeService;
 
 @Autowired
-    public RESTController(UsersService usersService) {
+    public RESTController(UsersService usersService, TaskEmployeeService taskEmployeeService) {
         this.usersService = usersService;
-    }
+    this.taskEmployeeService = taskEmployeeService;
+}
     @GetMapping("/users")
     public List<Users> getUsers(){
     return usersService.getAllUsers();
@@ -75,4 +78,22 @@ return role.getUsers();}
 
         return "Юзер с таким id удален";
     }
+    @GetMapping("/taskemp")
+    public ResponseEntity<List<TaskEmployee>> getTaskForEmp(@RequestParam(required = false)String title){
+        try {
+            List<TaskEmployee> taskEmployees = new ArrayList<>();
+            if(title == null)
+                taskEmployees.addAll(taskEmployeeRepository.findAll());
+
+            if (taskEmployees.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(taskEmployees,HttpStatus.OK);
+        }
+    catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    }
+
+
 }
