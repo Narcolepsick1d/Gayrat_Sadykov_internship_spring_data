@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>show</title>
+</head>
+<body>
+<table align='center' border='1' cellspacing='0'>
+    <tr>
+        <td>серийный номер</td>
+        <td>taskid</td>
+        <td>user_created_task_id</td>
+        <td>executor_id</td>
+        <td>task_description</td>
+        <td>date_created</td>
+        <td>редактировать</td>
+        <td>Удалить</td>
+    </tr>
+    <tr th:each="u,status:${taskEmp}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${u.taskId}">1</td>
+        <td th:text="${u.user_created_task_id}">1</td>
+        <td th:text="${u.executor_id}">1</td>
+        <td th:text="${u.task_description}">1</td>
+        <td th:text="${u.date_created}">1</td>
+        <td><a th:href="@{/taskEmployee/}+${u.taskId}">редактировать</a></td>
+        <td><a th:href="@{/removeTaskEmp(id=${u.taskId})}">Удалить</a></td>
+    </tr>
+</table>
+</body>
+</html>

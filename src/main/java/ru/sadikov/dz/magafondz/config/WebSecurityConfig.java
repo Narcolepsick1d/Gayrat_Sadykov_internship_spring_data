@@ -51,8 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.csrf().disable();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
                 .antMatchers("/").hasAnyAuthority()
                 .antMatchers("/userslist/users","/userslist/users/new","/userslist/users/edit/**").hasRole("ADMIN")
@@ -66,15 +66,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
-        http.exceptionHandling()
-                .authenticationEntryPoint(
-                        (request, response, ex) -> {
-                            response.sendError(
-                                    HttpServletResponse.SC_UNAUTHORIZED,
-                                    ex.getMessage()
-                            );
-                        }
-                );
+//        http.exceptionHandling()
+//                .authenticationEntryPoint(
+//                        (request, response, ex) -> {
+//                            response.sendError(
+//                                    HttpServletResponse.SC_UNAUTHORIZED,
+//                                    ex.getMessage()
+//                            );
+//                        }
+//                );
 //        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 //        http.authorizeRequests()
 //                .antMatchers("/users/**").authenticated()

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+    <div style="margin:0px auto; width:500px">
+
+      <form action="/user/${user.userId}" method="post">
+          <input type="hidden" name="_method" th:value="PUT">
+          taskId: <input name="taskId"  th:value="${taskEmp.taskId}"/><br/>
+          user_created_task_id: <input name="user_created_task_id" th:value="${taskEmp.user_created_task_id}"/> <br/>
+          executor_id: <input name="executor_id"  th:value="${taskEmp.taskId}"/><br/>
+          task_description: <input name="task_description"  th:value="${taskEmp.task_description}"/><br/>
+<!--          date_created: <input name="date_created"  th:value="${user.date_created}"/><br/>-->
+          <button type="submit">Разместить</button>
+
+        </form>
+    </div>
+
+</body>
+</html>

@@ -51,6 +51,8 @@
 					<td th:text="${employee.jobTitle}"></td>
 					<td> <a th:href="@{/employeelist/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
 					    <a th:href="@{/employeelist/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+
+						<a th:href="@{/taskEmployee/add}"class="btn btn-primary">Add task</a>
 					</td>
 				</tr>
 			</tbody>

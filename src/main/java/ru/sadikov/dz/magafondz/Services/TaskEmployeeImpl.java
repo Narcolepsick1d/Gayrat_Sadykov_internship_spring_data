@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;;
+
 import ru.sadikov.dz.magafondz.Reprository.TaskEmployeeRepository;
 import ru.sadikov.dz.magafondz.models.TaskEmployee;
 
@@ -21,22 +21,23 @@ import ru.sadikov.dz.magafondz.models.TaskEmployee;
 public class TaskEmployeeImpl implements  TaskEmployeeService{
     @Resource
     private MongoTemplate mongoTemplate;
-    @Autowired
+    @Resource
     TaskEmployeeRepository taskEmployeeRepository;
 
 
     @Override
     public TaskEmployee getByTaskEmpId(int taskid) {
-        return taskEmployeeRepository.getByTaskEmployeeId(taskid);
+        return taskEmployeeRepository.getTaskEmployeeByTaskId(taskid);
     }
 
     @Override
     public TaskEmployee getByTaskEmployeeidLike(int taskid) {
-        return taskEmployeeRepository.getByTaskEmployeeIdLike(taskid);
+        return taskEmployeeRepository.getTaskEmployeeByTaskIdLike(taskid);
     }
 
     @Override
     public void saveTaskEmp(TaskEmployee taskEmployee) {
+        taskEmployee.getDate_created();
         taskEmployeeRepository.save(taskEmployee);
 
     }
@@ -54,7 +55,7 @@ public class TaskEmployeeImpl implements  TaskEmployeeService{
         update.set("taskId",taskEmployee.getTaskId());
         update.set("user_created_task_id",taskEmployee.getUser_created_task_id());
         update.set("executor_id",taskEmployee.getExecutor_id());
-        update.set("task_description",taskEmployee.getTask_description());
+        update.set("task_description",taskEmployee.getDate_created());
         update.set("date_created",taskEmployee.getDate_created());
     }
 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>добавление данных</title>
+</head>
+<body>
+    <form action="taskEmployee" method="post">
+        taskId: <input name="taskId" /> <br/>
+        user_created_task_id: <input name="user_created_task_id"/> <br/>
+        executor_id: <input name="executor_id" /> <br/>
+        task_description: <input name="task_description" /> <br/>
+<!--        date_created: <input name="date_created" /> <br/>-->
+    <button th:href="@{taskEmployee/taskEmployee}" type="submit">Добавить к</button>
+    </form>
+</body>
+</html>
