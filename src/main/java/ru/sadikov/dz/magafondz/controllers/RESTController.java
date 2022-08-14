@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sadikov.dz.magafondz.Reprository.RoleRepository;
+import ru.sadikov.dz.magafondz.Reprository.TasksService;
 import ru.sadikov.dz.magafondz.Services.EmployeeService;
 import ru.sadikov.dz.magafondz.Services.InterService;
 import ru.sadikov.dz.magafondz.Services.UsersService;
@@ -24,6 +25,8 @@ public class RESTController {
     private InterService interService;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private TasksService tasksService;
 
 
 @Autowired
@@ -74,5 +77,9 @@ return role.getUsers();}
         return "Юзер с таким id удален";
     }
 
+    @GetMapping("/tasks")
+    public List<Tasks> getTasks(){
+    return tasksService.getAllTasks();
+    }
 
 }
