@@ -16,15 +16,15 @@
         <td>редактировать</td>
         <td>Удалить</td>
     </tr>
-    <tr th:each="u,status:${taskEmp}">
+    <tr th:each="u,status:${users}">
         <td th:text="${status.count}"></td>
         <td th:text="${u.taskId}">1</td>
         <td th:text="${u.user_created_task_id}">1</td>
         <td th:text="${u.executor_id}">1</td>
         <td th:text="${u.task_description}">1</td>
         <td th:text="${u.date_created}">1</td>
-        <td><a th:href="@{/taskEmployee/}+${u.taskId}">редактировать</a></td>
-        <td><a th:href="@{/removeTaskEmp(id=${u.taskId})}">Удалить</a></td>
+        <td><a th:href="@{/user/}+${u.taskId}">редактировать</a></td>
+        <td><a th:href="@{/removeUserById(id=${u.taskId})}">Удалить</a></td>
     </tr>
 </table>
 </body>
